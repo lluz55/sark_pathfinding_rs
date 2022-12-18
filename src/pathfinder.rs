@@ -9,7 +9,7 @@ use std::{
 use crate::pathmap::PathMap;
 
 /// Struct for running pathfinding algorithms.
-/// 
+///
 /// Maintains internal state so it can be re-used to avoid allocations.
 #[derive(Default)]
 pub struct Pathfinder {
@@ -26,9 +26,9 @@ impl Pathfinder {
 
     /// Create a new pathfinder.
     ///
-    /// The `length` parameter determines the initial size of the internal 
-    /// containers. These containers will grow as needed when running the 
-    /// pathfinding algorithm, but setting a reasonable initial size could avoid 
+    /// The `length` parameter determines the initial size of the internal
+    /// containers. These containers will grow as needed when running the
+    /// pathfinding algorithm, but setting a reasonable initial size could avoid
     /// performance issues from excessive allocations.
     pub fn with_capacity(len: usize) -> Self {
         Self {
@@ -39,7 +39,7 @@ impl Pathfinder {
         }
     }
 
-    /// Find a path on the given [PathMap]. Returns `None` if no path could be 
+    /// Find a path on the given [PathMap]. Returns `None` if no path could be
     /// found.
     pub fn astar(
         &mut self,
@@ -62,7 +62,6 @@ impl Pathfinder {
 
             for next in map.exits(curr) {
                 let new_cost = self.costs[&curr] + map.cost(curr, next);
-
                 let next_cost = self.costs.get(&next);
 
                 if next_cost.is_none() || new_cost < *next_cost.unwrap() {
@@ -145,13 +144,13 @@ impl Pathfinder {
         self.parents.keys()
     }
 
-    /// Retrieve a reference to the `parents` map which is populated during 
+    /// Retrieve a reference to the `parents` map which is populated during
     /// pathfinding operations.
     pub fn parents(&self) -> &HashMap<IVec2, IVec2, RandomState> {
         &self.parents
     }
 
-    /// Retrieve a reference to the `costs` map which is populated during 
+    /// Retrieve a reference to the `costs` map which is populated during
     /// pathfinding operations.
     pub fn costs(&self) -> &HashMap<IVec2, i32, RandomState> {
         &self.costs

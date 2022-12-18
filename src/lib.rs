@@ -22,5 +22,5 @@ pub mod pathfinder;
 pub mod pathmap;
 
 pub use pathfinder::Pathfinder;
-pub use pathmap::{PathMap, PathMap2d};
+pub use pathmap::{GridCell, PathMap, PathMap2DWeighted, PathMap2d};
 pub use sark_grids::{GridPoint, Size2d};
